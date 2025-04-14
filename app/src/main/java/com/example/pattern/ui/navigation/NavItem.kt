@@ -2,13 +2,13 @@ package com.example.pattern.ui.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.graphics.vector.ImageVector
 
 sealed class Screens(val route : String) {
     object Home : Screens("home_route")
-    object Search : Screens("search_route")
+    object Add : Screens("add_route")
     object Profile : Screens("profile_route")
 }
 data class BottomNavigationItem(
@@ -25,9 +25,9 @@ data class BottomNavigationItem(
                 route = Screens.Home.route
             ),
             BottomNavigationItem(
-                label = "Search",
-                icon = Icons.Filled.Search,
-                route = Screens.Search.route
+                label = "Add",
+                icon = Icons.Filled.Add,
+                route = Screens.Add.route
             ),
             BottomNavigationItem(
                 label = "Profile",

@@ -20,6 +20,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.pattern.ui.navigation.BottomNavigationItem
 import com.example.pattern.ui.navigation.Screens
+import com.example.pattern.ui.screens.AddHabitScreen
 import com.example.pattern.ui.screens.HomeScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -35,49 +36,50 @@ fun BottomNavigationBar() {
         bottomBar = {
             NavigationBar {
                 //getting the list of bottom navigation items for our data class
-                BottomNavigationItem().bottomNavigationItems().forEachIndexed {index,navigationItem ->
+                BottomNavigationItem().bottomNavigationItems()
+                    .forEachIndexed { index, navigationItem ->
 
-                    //iterating all items with their respective indexes
-                    NavigationBarItem(
-                        selected = index == navigationSelectedItem,
-                        label = {
-                            Text(navigationItem.label)
-                        },
-                        icon = {
-                            Icon(
-                                navigationItem.icon,
-                                contentDescription = navigationItem.label
-                            )
-                        },
-                        onClick = {
-                            navigationSelectedItem = index
-                            navController.navigate(navigationItem.route) {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
+                        //iterating all items with their respective indexes
+                        NavigationBarItem(
+                            selected = index == navigationSelectedItem,
+                            label = {
+                                Text(navigationItem.label)
+                            },
+                            icon = {
+                                Icon(
+                                    navigationItem.icon,
+                                    contentDescription = navigationItem.label
+                                )
+                            },
+                            onClick = {
+                                navigationSelectedItem = index
+                                navController.navigate(navigationItem.route) {
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
                                 }
-                                launchSingleTop = true
-                                restoreState = true
                             }
-                        }
-                    )
-                }
+                        )
+                    }
             }
         }
     ) { paddingValues ->
-        //We need to setup our NavHost in here
         NavHost(
             navController = navController,
             startDestination = Screens.Home.route,
-            modifier = Modifier.padding(paddingValues = paddingValues)) {
+            modifier = Modifier.padding(paddingValues = paddingValues)
+        ) {
             composable(Screens.Home.route) {
                 HomeScreen()
             }
-            composable(Screens.Search.route) {
-                //Add More Habit Screen
+            composable(Screens.Add.route) {
+                AddHabitScreen()
             }
             composable(Screens.Profile.route) {
                 //Profile Screen
             }
+        }
     }
-}
 }
