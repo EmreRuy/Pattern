@@ -63,5 +63,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(libs.androidx.ui.text.google.fonts)
+    implementation(libs.androidx.hilt.navigation.compose)
 
 }
