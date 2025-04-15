@@ -1,7 +1,9 @@
 package com.example.pattern.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -13,6 +15,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -20,7 +23,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.AddCircle
-import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.CheckCircle
@@ -35,9 +37,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -56,6 +60,7 @@ fun PreviewOfHomeScreen() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen() {
+    val selectedDay = remember { mutableIntStateOf(0) }
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -100,19 +105,29 @@ fun HomeScreen() {
                     contentPadding = PaddingValues(end = 8.dp)
                 ) {
                     items(365) { index ->
-                        Column {
-                            Text(
-                                text = "Day $index", // Replace with real day data like "Mon 1", "Tue 2", etc.
+                        Column(modifier = Modifier.padding(end = 8.dp)) {
+                            Box(
                                 modifier = Modifier
-                                    .padding(end = 12.dp)
+                                    .width(120.dp)
+                                    .clickable { selectedDay.intValue = index }
                                     .background(
-                                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f),
+                                        if (selectedDay.intValue == index)
+                                            MaterialTheme.colorScheme.primary.copy(alpha = 0.3f) // Highlights if selected
+                                        else
+                                            MaterialTheme.colorScheme.primary.copy(alpha = 0.1f), // if not then normal
                                         shape = RoundedCornerShape(12.dp)
                                     )
                                     .padding(horizontal = 12.dp, vertical = 6.dp),
-                                color = MaterialTheme.colorScheme.onBackground
-                            )
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = "Day $index", // will be Replaced with real day data like "Mon 1", "Tue 2", etc.
+                                    modifier = Modifier
+                                        .padding(horizontal = 12.dp, vertical = 8.dp),
+                                    color = MaterialTheme.colorScheme.onBackground
+                                )
 
+                            }
                         }
 
                     }
@@ -120,7 +135,7 @@ fun HomeScreen() {
             }
         }
     ) { paddingValues ->
-        val habits = listOf(
+        val allHabits = listOf(
             Habit("Read 10 pages", Icons.Default.CheckCircle),
             Habit("Meditate", Icons.Default.Build),
             Habit("Workout", Icons.Default.AccountBox),
@@ -130,6 +145,9 @@ fun HomeScreen() {
             Habit("Dance Practice", Icons.Default.DateRange),
             Habit("Drawing course", Icons.Default.Email)
         )
+        val habits = allHabits.filterIndexed {index, _ ->
+            (index + selectedDay.intValue) % 2 == 0
+        }
         val scroll = rememberScrollState()
         Column(
             modifier = Modifier
@@ -144,7 +162,7 @@ fun HomeScreen() {
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .heightIn(min = 90.dp)
+                        .heightIn(min = 85.dp)
                         .padding(vertical = 10.dp),
                     shape = RoundedCornerShape(16.dp),
                     colors = CardDefaults.cardColors(
@@ -164,7 +182,7 @@ fun HomeScreen() {
                                 imageVector = habit.icon,
                                 contentDescription = null,
                                 tint = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.size(24.dp)
+                                modifier = Modifier.size(32.dp)
                             )
                             Spacer(modifier = Modifier.width(12.dp))
                             Text(
