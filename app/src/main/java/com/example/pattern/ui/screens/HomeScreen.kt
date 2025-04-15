@@ -121,7 +121,7 @@ fun HomeScreen() {
                                 contentAlignment = Alignment.Center
                             ) {
                                 Text(
-                                    text = "Day $index", // will be Replaced with real day data like "Mon 1", "Tue 2", etc.
+                                    text = "April $index", // will be Replaced with real day data like "Mon 1", "Tue 2", etc.
                                     modifier = Modifier
                                         .padding(horizontal = 12.dp, vertical = 8.dp),
                                     color = MaterialTheme.colorScheme.onBackground
