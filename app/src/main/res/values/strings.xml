@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">pattern</string>
-    <string name="date">DD/MM/YYYY</string>
+    <string name="date">April 15</string>
+    <string name="MyHabit">My Schedule</string>
 </resources>

@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -38,7 +37,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -126,10 +124,8 @@ fun HomeScreen() {
                                         .padding(horizontal = 12.dp, vertical = 8.dp),
                                     color = MaterialTheme.colorScheme.onBackground
                                 )
-
                             }
                         }
-
                     }
                 }
             }
@@ -143,66 +139,103 @@ fun HomeScreen() {
             Habit("Listen Music", Icons.Default.Call),
             Habit("Write a journal", Icons.Default.Create),
             Habit("Dance Practice", Icons.Default.DateRange),
+            Habit("Dance Practice", Icons.Default.DateRange),
+            Habit("Dance Practice", Icons.Default.DateRange),
+            Habit("Dance Practice", Icons.Default.DateRange),
+            Habit("Dance Practice", Icons.Default.DateRange),
+            Habit("Dance Practice", Icons.Default.DateRange),
+            Habit("Dance Practice", Icons.Default.DateRange),
+            Habit("Dance Practice", Icons.Default.DateRange),
+            Habit("Dance Practice", Icons.Default.DateRange),
+            Habit("Dance Practice", Icons.Default.DateRange),
+            Habit("Dance Practice", Icons.Default.DateRange),
+            Habit("Dance Practice", Icons.Default.DateRange),
+            Habit("Dance Practice", Icons.Default.DateRange),
+            Habit("Dance Practice", Icons.Default.DateRange),
+            Habit("Dance Practice", Icons.Default.DateRange),
+            Habit("Dance Practice", Icons.Default.DateRange),
             Habit("Drawing course", Icons.Default.Email)
         )
-        val habits = allHabits.filterIndexed {index, _ ->
+        val habits = allHabits.filterIndexed { index, _ ->
             (index + selectedDay.intValue) % 2 == 0
         }
         val scroll = rememberScrollState()
-        Column(
+        Card(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
+                .background( MaterialTheme.colorScheme.onBackground.copy(alpha = 0.05f)
+                )
                 .padding(paddingValues)
-                .verticalScroll(scroll)
-                .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Top
+                .padding(horizontal = 16.dp, vertical = 20.dp)
+               /* .border(
+                    width = 1.dp,
+                    color = MaterialTheme.colorScheme.outline,
+                    shape = RoundedCornerShape(24.dp)
+                ), */,
+            shape = RoundedCornerShape(24.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surface
+            ),
+            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
         ) {
-            habits.forEach { habit ->
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .heightIn(min = 85.dp)
-                        .padding(vertical = 10.dp),
-                    shape = RoundedCornerShape(16.dp),
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.surfaceVariant
-                    ),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
-                ) {
-                    Row(
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .verticalScroll(scroll)
+                    .padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Top
+            ) {
+                Text(
+                    text = "My Habits",
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(bottom = 12.dp),
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+                habits.forEach { habit ->
+                    Card(
                         modifier = Modifier
-                            .padding(16.dp)
-                            .fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
+                            .fillMaxWidth()
+                            .heightIn(min = 85.dp)
+                            .padding(vertical = 10.dp),
+                        shape = RoundedCornerShape(24.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.surfaceVariant
+                        ),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
                     ) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
+                        Row(
+                            modifier = Modifier
+                                .padding(16.dp)
+                                .fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Icon(
+                                    imageVector = habit.icon,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.primary,
+                                    modifier = Modifier.size(32.dp)
+                                )
+                                Spacer(modifier = Modifier.width(12.dp))
+                                Text(
+                                    text = habit.name,
+                                    style = MaterialTheme.typography.bodyLarge,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
                             Icon(
-                                imageVector = habit.icon,
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.size(32.dp)
-                            )
-                            Spacer(modifier = Modifier.width(12.dp))
-                            Text(
-                                text = habit.name,
-                                style = MaterialTheme.typography.bodyLarge,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                                imageVector = Icons.Default.CheckCircle,
+                                contentDescription = "Mark done",
+                                tint = MaterialTheme.colorScheme.primary
                             )
                         }
-                        Icon(
-                            imageVector = Icons.Default.CheckCircle,
-                            contentDescription = "Mark done",
-                            tint = MaterialTheme.colorScheme.primary
-                        )
                     }
-
                 }
             }
-
         }
-
     }
 }
 
