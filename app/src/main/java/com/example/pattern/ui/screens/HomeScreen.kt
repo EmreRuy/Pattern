@@ -40,6 +40,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -82,7 +83,7 @@ fun HomeScreen() {
                         tint = MaterialTheme.colorScheme.onBackground
                     )
                     Text(
-                        text = stringResource(id = R.string.date),
+                        text = stringResource(id = R.string.app_name),
                         fontSize = 22.sp,
                         fontFamily = MaterialTheme.typography.bodyMedium.fontFamily,
                         fontWeight = FontWeight.SemiBold,
@@ -187,11 +188,12 @@ fun HomeScreen() {
                 verticalArrangement = Arrangement.Top
             ) {
                 Text(
+                    modifier = Modifier.padding(10.dp),
                     text = "My Habits",
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 12.dp),
-                    color = MaterialTheme.colorScheme.onSurface
+                    fontSize = 22.sp,
+                    fontFamily = MaterialTheme.typography.bodyMedium.fontFamily,
+                    fontWeight = FontWeight.SemiBold,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
                 habits.forEach { habit ->
                     Card(
@@ -205,6 +207,17 @@ fun HomeScreen() {
                         ),
                         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
                     ) {
+                        val iconColors = listOf(
+                            MaterialTheme.colorScheme.primary,
+                            MaterialTheme.colorScheme.secondary,
+                            MaterialTheme.colorScheme.tertiary,
+                            MaterialTheme.colorScheme.error,
+                            MaterialTheme.colorScheme.inversePrimary,
+                            MaterialTheme.colorScheme.outline,
+                            Color(0xFF3DDC84),  // You can add more custom ones
+                            Color(0xFF03DAC5)
+                        )
+                        val randomColor = iconColors.random()
                         Row(
                             modifier = Modifier
                                 .padding(16.dp)
@@ -216,13 +229,14 @@ fun HomeScreen() {
                                 Icon(
                                     imageVector = habit.icon,
                                     contentDescription = null,
-                                    tint = MaterialTheme.colorScheme.primary,
+                                    tint = randomColor,
                                     modifier = Modifier.size(32.dp)
                                 )
                                 Spacer(modifier = Modifier.width(12.dp))
                                 Text(
                                     text = habit.name,
                                     style = MaterialTheme.typography.bodyLarge,
+                                    fontWeight = FontWeight.SemiBold,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                             }
