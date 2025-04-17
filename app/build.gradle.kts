@@ -65,4 +65,6 @@ dependencies {
     implementation(libs.androidx.ui.text.google.fonts)
     implementation(libs.androidx.hilt.navigation.compose)
 
+    implementation(libs.konfetti.compose)
+
 }

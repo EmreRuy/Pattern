@@ -20,8 +20,8 @@ import com.example.pattern.ui.screens.HomeScreen
 import com.example.pattern.ui.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.runtime.getValue
+import com.example.pattern.ui.screens.ProfileScreen
 
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,10 +59,10 @@ class MainActivity : ComponentActivity() {
                             HomeScreen()
                         }
                         composable(Screens.Add.route) {
-                            AddHabitScreen() // You can define this screen
+                            AddHabitScreen()
                         }
                         composable(Screens.Profile.route) {
-                           // ProfileScreen() // Define this too
+                            ProfileScreen()
                         }
                     }
                 }
@@ -70,9 +70,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-
-
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {

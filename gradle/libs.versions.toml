@@ -12,6 +12,7 @@ uiTextGoogleFonts = "1.7.8"
 hilt-navigation-compose = "1.2.0"
 
 [libraries]
+konfetti-compose = { module = "nl.dionsegijn:konfetti-compose", version = "2.0.4" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-ui-text-google-fonts = { module = "androidx.compose.ui:ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
