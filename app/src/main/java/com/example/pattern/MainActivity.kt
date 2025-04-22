@@ -18,7 +18,6 @@ import com.example.pattern.ui.navigation.Screens
 import com.example.pattern.ui.screens.AddHabitScreen
 import com.example.pattern.ui.screens.HomeScreen
 import com.example.pattern.ui.theme.AppTheme
-import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.runtime.getValue
 import com.example.pattern.ui.screens.ProfileScreen
 
