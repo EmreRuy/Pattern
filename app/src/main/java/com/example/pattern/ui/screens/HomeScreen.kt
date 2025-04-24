@@ -55,6 +55,7 @@ import androidx.compose.ui.unit.sp
 import com.example.pattern.R
 import com.example.pattern.ui.components.ConfettiView
 import com.example.pattern.ui.components.Habit
+import com.example.pattern.ui.components.HabitCards
 import kotlinx.coroutines.delay
 
 @Preview(showBackground = true)
@@ -68,6 +69,17 @@ fun PreviewOfHomeScreen() {
 fun HomeScreen() {
     val selectedDay = remember { mutableIntStateOf(0) }
     var explodeConfetti by remember { mutableStateOf(false) }
+    var triggerConfetti by remember { mutableStateOf(false) }
+
+    // Proper usage of LaunchedEffect inside the composable scope
+    LaunchedEffect(triggerConfetti) {
+        if (triggerConfetti) {
+            delay(300)
+            explodeConfetti = true
+            triggerConfetti = false
+        }
+    }
+
     Box(modifier = Modifier.fillMaxSize()) {
         ConfettiView(
             explodeConfetti = explodeConfetti,
@@ -124,16 +136,16 @@ fun HomeScreen() {
                                             .clickable { selectedDay.intValue = index }
                                             .background(
                                                 if (selectedDay.intValue == index)
-                                                    MaterialTheme.colorScheme.primary.copy(alpha = 0.3f) // Highlights if selected
+                                                    MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)
                                                 else
-                                                    MaterialTheme.colorScheme.primary.copy(alpha = 0.1f), // if not then normal
+                                                    MaterialTheme.colorScheme.primary.copy(alpha = 0.1f),
                                                 shape = RoundedCornerShape(12.dp)
                                             )
                                             .padding(horizontal = 12.dp, vertical = 6.dp),
                                         contentAlignment = Alignment.Center
                                     ) {
                                         Text(
-                                            text = "April $index", // will be Replaced with real day data like "Mon 1", "Tue 2", etc.
+                                            text = "April $index", // Replace with actual localized date later
                                             modifier = Modifier
                                                 .padding(horizontal = 12.dp, vertical = 8.dp),
                                             color = MaterialTheme.colorScheme.onBackground
@@ -145,6 +157,7 @@ fun HomeScreen() {
                     }
                 }
             ) { paddingValues ->
+
                 val allHabits = remember {
                     listOf(
                         Habit("Read 10 pages", Icons.Default.CheckCircle),
@@ -163,102 +176,25 @@ fun HomeScreen() {
                         Habit("Write a journal", Icons.Default.Create),
                         Habit("Write a journal", Icons.Default.Create),
                         Habit("Write a journal", Icons.Default.Create),
-                        Habit("Write a journal", Icons.Default.Create),
                         Habit("Dance Practice", Icons.Default.DateRange),
                         Habit("Drawing course", Icons.Default.Email)
                     )
                 }
+
                 val habits = allHabits.filterIndexed { index, _ ->
                     (index + selectedDay.intValue) % 2 == 0
                 }
-                val scroll = rememberScrollState()
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(
-                            MaterialTheme.colorScheme.onBackground.copy(alpha = 0.02f)
-                        )
-                        .padding(paddingValues)
-                        .padding(horizontal = 16.dp, vertical = 20.dp),
-                    shape = RoundedCornerShape(24.dp),
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.surfaceVariant
-                    ),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-                ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .verticalScroll(scroll)
-                            .padding(16.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Top
-                    ) {
-                        Text(
-                            modifier = Modifier.padding(10.dp),
-                            text = "My Habits",
-                            fontSize = 22.sp,
-                            fontFamily = MaterialTheme.typography.bodyMedium.fontFamily,
-                            fontWeight = FontWeight.SemiBold,
-                            color = MaterialTheme.colorScheme.onBackground
-                        )
-                        habits.forEach { habit ->
-                            Card(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .heightIn(min = 85.dp)
-                                    .padding(vertical = 10.dp),
-                                shape = RoundedCornerShape(24.dp),
-                                colors = CardDefaults.cardColors(
-                                    containerColor = MaterialTheme.colorScheme.surface
-                                ),
-                                elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
-                            ) {
-                                Row(
-                                    modifier = Modifier
-                                        .padding(16.dp)
-                                        .fillMaxWidth(),
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    horizontalArrangement = Arrangement.SpaceBetween
-                                ) {
-                                    Row(verticalAlignment = Alignment.CenterVertically) {
-                                        Icon(
-                                            imageVector = habit.icon,
-                                            contentDescription = null,
-                                            tint = MaterialTheme.colorScheme.primary,
-                                            modifier = Modifier.size(32.dp)
-                                        )
-                                        Spacer(modifier = Modifier.width(12.dp))
-                                        Text(
-                                            text = habit.name,
-                                            style = MaterialTheme.typography.bodyLarge,
-                                            fontWeight = FontWeight.SemiBold,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                                        )
-                                    }
-                                    Icon(
-                                        imageVector = if (habit.isChecked.value) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
-                                        contentDescription = null,
-                                        tint = if (habit.isChecked.value) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
-                                        modifier = Modifier
-                                            .size(28.dp)
-                                            .clickable {
-                                                habit.isChecked.value = !habit.isChecked.value
-                                            }
-                                    )
-                                    LaunchedEffect(habit.isChecked.value) {
-                                        if (habit.isChecked.value) {
-                                            delay(300)
-                                            explodeConfetti = true
-                                        }
-                                    }
-                                }
-                            }
-                        }
+
+                HabitCards(
+                    habits = habits,
+                    paddingValues = paddingValues,
+                    onHabitChecked = {
+                        triggerConfetti = true
                     }
-                }
+                )
             }
         }
     }
 }
+
 
