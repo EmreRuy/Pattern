@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.sp
 fun HabitCards(
     habits: List<Habit>,
     paddingValues: PaddingValues,
-    onHabitChecked: () -> Unit
+    onHabitChecked: () -> Unit,
 ) {
     val scroll = rememberScrollState()
     Card(

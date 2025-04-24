@@ -11,14 +11,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.AddCircle
@@ -28,10 +25,6 @@ import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.outlined.FavoriteBorder
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -71,7 +64,6 @@ fun HomeScreen() {
     var explodeConfetti by remember { mutableStateOf(false) }
     var triggerConfetti by remember { mutableStateOf(false) }
 
-    // Proper usage of LaunchedEffect inside the composable scope
     LaunchedEffect(triggerConfetti) {
         if (triggerConfetti) {
             delay(300)
@@ -79,7 +71,6 @@ fun HomeScreen() {
             triggerConfetti = false
         }
     }
-
     Box(modifier = Modifier.fillMaxSize()) {
         ConfettiView(
             explodeConfetti = explodeConfetti,
