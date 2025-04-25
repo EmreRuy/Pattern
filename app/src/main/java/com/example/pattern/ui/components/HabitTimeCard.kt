@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -32,13 +31,11 @@ fun HabitTimeCard(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .heightIn(min = 85.dp)
-            .padding(vertical = 10.dp),
+            .padding(vertical = 6.dp, horizontal = 2.dp),
         shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
-        ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        )
     ) {
         Row(
             modifier = Modifier
@@ -62,13 +59,12 @@ fun HabitTimeCard(
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
-
             Icon(
                 imageVector = if (habit.isChecked.value) Icons.Filled.PlayArrow else Icons.Outlined.PlayArrow,
                 contentDescription = null,
                 tint = if (habit.isChecked.value) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
                 modifier = Modifier
-                    .size(38.dp)
+                    .size(28.dp)
                     .clickable {
                         habit.isChecked.value = !habit.isChecked.value
                         if (habit.isChecked.value) {

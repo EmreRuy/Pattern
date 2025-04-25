@@ -22,7 +22,6 @@ import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -156,17 +155,10 @@ fun HomeScreen() {
                         Habit("Workout", Icons.Default.AccountBox),
                         Habit("Drink water", Icons.Default.AddCircle),
                         Habit("Listen Music", Icons.Default.Call),
-                        Habit("Write a journal", Icons.Default.Create),
-                        Habit("Write a journal", Icons.Default.Create),
-                        Habit("Write a journal", Icons.Default.Create),
-                        Habit("Write a journal", Icons.Default.Create),
-                        Habit("Write a journal", Icons.Default.Create),
-                        Habit("Write a journal", Icons.Default.Create),
-                        Habit("Write a journal", Icons.Default.Create),
-                        Habit("Write a journal", Icons.Default.Create),
-                        Habit("Write a journal", Icons.Default.Create),
-                        Habit("Write a journal", Icons.Default.Create),
-                        Habit("Write a journal", Icons.Default.Create),
+                        Habit("Dance Practice", Icons.Default.DateRange),
+                        Habit("Dance Practice", Icons.Default.DateRange),
+                        Habit("Dance Practice", Icons.Default.DateRange),
+                        Habit("Dance Practice", Icons.Default.DateRange),
                         Habit("Dance Practice", Icons.Default.DateRange),
                         Habit("Drawing course", Icons.Default.Email)
                     )

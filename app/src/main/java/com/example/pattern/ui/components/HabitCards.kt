@@ -1,16 +1,16 @@
 package com.example.pattern.ui.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,23 +27,22 @@ fun HabitCards(
     onHabitChecked: () -> Unit,
 ) {
     val scroll = rememberScrollState()
-    Card(
+    Box(
         modifier = Modifier
             .fillMaxWidth()
-            .heightIn(min = 500.dp)
+            .fillMaxHeight()
             .padding(paddingValues)
-            .padding(horizontal = 16.dp, vertical = 20.dp),
-        shape = RoundedCornerShape(24.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant
-        ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+            .padding(horizontal = 16.dp, vertical = 16.dp)
+            .background(
+                color = MaterialTheme.colorScheme.surfaceVariant,
+                shape = RoundedCornerShape(24.dp)
+            )
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .verticalScroll(scroll)
-                .padding(16.dp),
+                .padding(10.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
@@ -62,3 +61,4 @@ fun HabitCards(
         }
     }
 }
+
