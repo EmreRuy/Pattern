@@ -125,7 +125,6 @@ fun ProfileScreen() {
                 .padding(horizontal = 32.dp, vertical = 16.dp)
                 .height(400.dp),
             shape = RoundedCornerShape(24.dp),
-            // elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.surfaceVariant
             )

@@ -25,6 +25,7 @@ fun HabitCards(
     habits: List<Habit>,
     paddingValues: PaddingValues,
     onHabitChecked: () -> Unit,
+    onHabitTimeChecked: () -> Unit,
 ) {
     val scroll = rememberScrollState()
     Box(
@@ -56,7 +57,7 @@ fun HabitCards(
             )
             habits.forEach { habit ->
                 HabitTaskCard(habit = habit, onHabitChecked = onHabitChecked)
-                HabitTimeCard(habit = habit, onHabitChecked = onHabitChecked)
+                HabitTimeCard(habit = habit, onHabitTimeChecked = onHabitTimeChecked)
             }
         }
     }

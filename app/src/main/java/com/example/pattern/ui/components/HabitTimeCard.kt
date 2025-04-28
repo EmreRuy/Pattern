@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun HabitTimeCard(
     habit: Habit,
-    onHabitChecked: () -> Unit
+    onHabitTimeChecked: () -> Unit,
 ) {
     Card(
         modifier = Modifier
@@ -60,15 +60,15 @@ fun HabitTimeCard(
                 )
             }
             Icon(
-                imageVector = if (habit.isChecked.value) Icons.Filled.PlayArrow else Icons.Outlined.PlayArrow,
+                imageVector = if (habit.isTimeChecked.value) Icons.Filled.PlayArrow else Icons.Outlined.PlayArrow,
                 contentDescription = null,
-                tint = if (habit.isChecked.value) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
+                tint = if (habit.isTimeChecked.value) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
                 modifier = Modifier
                     .size(28.dp)
                     .clickable {
-                        habit.isChecked.value = !habit.isChecked.value
-                        if (habit.isChecked.value) {
-                            onHabitChecked()
+                        habit.isTimeChecked.value = !habit.isTimeChecked.value
+                        if (habit.isTimeChecked.value) {
+                            onHabitTimeChecked()
                         }
                     }
             )

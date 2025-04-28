@@ -8,5 +8,6 @@ import java.time.DayOfWeek
 data class Habit(
     val name: String,
     val icon: ImageVector,
-    var isChecked: MutableState<Boolean> = mutableStateOf(false)
+    var isChecked: MutableState<Boolean> = mutableStateOf(false),
+    var isTimeChecked: MutableState<Boolean> = mutableStateOf(false)
 )

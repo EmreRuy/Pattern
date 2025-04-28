@@ -173,6 +173,9 @@ fun HomeScreen() {
                     paddingValues = paddingValues,
                     onHabitChecked = {
                         triggerConfetti = true
+                    },
+                    onHabitTimeChecked = {
+                        triggerConfetti = true
                     }
                 )
             }
