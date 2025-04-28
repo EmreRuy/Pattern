@@ -1,5 +1,7 @@
 package com.example.pattern.ui.screens
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -48,6 +50,7 @@ import com.example.pattern.R
 import com.example.pattern.ui.components.ConfettiView
 import com.example.pattern.data.model.Habit
 import com.example.pattern.ui.components.HabitCards
+import com.example.pattern.utils.generateNext365Days
 import kotlinx.coroutines.delay
 
 @Preview(showBackground = true)
@@ -62,7 +65,7 @@ fun HomeScreen() {
     val selectedDay = remember { mutableIntStateOf(0) }
     var explodeConfetti by remember { mutableStateOf(false) }
     var triggerConfetti by remember { mutableStateOf(false) }
-
+    val dayList = remember { generateNext365Days()}
     LaunchedEffect(triggerConfetti) {
         if (triggerConfetti) {
             delay(300)
@@ -135,7 +138,7 @@ fun HomeScreen() {
                                         contentAlignment = Alignment.Center
                                     ) {
                                         Text(
-                                            text = "April $index", // Replace with actual localized date later
+                                            text = dayList[index], 
                                             modifier = Modifier
                                                 .padding(horizontal = 12.dp, vertical = 8.dp),
                                             color = MaterialTheme.colorScheme.onBackground

@@ -21,6 +21,12 @@ import com.example.pattern.ui.theme.AppTheme
 import androidx.compose.runtime.getValue
 import com.example.pattern.ui.screens.ProfileScreen
 
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+
+}
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +35,6 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentRoute = navBackStackEntry?.destination?.route ?: Screens.Home.route
-
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     bottomBar = {
@@ -68,9 +73,4 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-
 }
