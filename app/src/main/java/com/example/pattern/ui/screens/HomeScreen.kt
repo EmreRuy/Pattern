@@ -1,7 +1,5 @@
 package com.example.pattern.ui.screens
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -65,7 +63,7 @@ fun HomeScreen() {
     val selectedDay = remember { mutableIntStateOf(0) }
     var explodeConfetti by remember { mutableStateOf(false) }
     var triggerConfetti by remember { mutableStateOf(false) }
-    val dayList = remember { generateNext365Days()}
+    val dayList = remember { generateNext365Days() }
     LaunchedEffect(triggerConfetti) {
         if (triggerConfetti) {
             delay(300)
@@ -138,7 +136,7 @@ fun HomeScreen() {
                                         contentAlignment = Alignment.Center
                                     ) {
                                         Text(
-                                            text = dayList[index], 
+                                            text = dayList[index],
                                             modifier = Modifier
                                                 .padding(horizontal = 12.dp, vertical = 8.dp),
                                             color = MaterialTheme.colorScheme.onBackground
