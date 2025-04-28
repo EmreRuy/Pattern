@@ -46,7 +46,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.pattern.R
 import com.example.pattern.ui.components.ConfettiView
-import com.example.pattern.ui.components.Habit
+import com.example.pattern.data.model.Habit
 import com.example.pattern.ui.components.HabitCards
 import kotlinx.coroutines.delay
 

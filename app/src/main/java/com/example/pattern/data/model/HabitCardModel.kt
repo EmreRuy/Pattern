@@ -1,9 +1,8 @@
-package com.example.pattern.ui.components
+package com.example.pattern.data.model
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.vector.ImageVector
-import java.time.DayOfWeek
 
 data class Habit(
     val name: String,
