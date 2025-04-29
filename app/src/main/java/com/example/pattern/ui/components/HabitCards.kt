@@ -54,7 +54,7 @@ fun HabitCards(
                 fontSize = 22.sp,
                 fontFamily = MaterialTheme.typography.bodyMedium.fontFamily,
                 fontWeight = FontWeight.SemiBold,
-                color = MaterialTheme.colorScheme.onBackground
+                color = MaterialTheme.colorScheme.primary
             )
             habits.forEach { habit ->
                 HabitTaskCard(habit = habit, onHabitChecked = onHabitChecked)
