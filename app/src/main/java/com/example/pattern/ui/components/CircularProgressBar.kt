@@ -30,7 +30,7 @@ fun CircularProgressBar(
     number: Int,
     label: String,
     fontSize: TextUnit = 28.sp,
-    radius: Dp = 80.dp,
+    radius: Dp = 70.dp,
     color: Color = MaterialTheme.colorScheme.primary,
     strokeWidth: Dp = 8.dp,
     animDuration: Int = 3000,
