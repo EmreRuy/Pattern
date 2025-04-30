@@ -28,14 +28,13 @@ import androidx.compose.ui.unit.sp
 fun CircularProgressBar(
     percentage: Float,
     number: Int,
-    label: String,
     fontSize: TextUnit = 28.sp,
     radius: Dp = 70.dp,
     color: Color = MaterialTheme.colorScheme.primary,
-    strokeWidth: Dp = 8.dp,
+    strokeWidth: Dp = 10.dp,
     animDuration: Int = 3000,
     animDelay: Int = 0,
-    ) {
+) {
     var animationPlayed by remember { mutableStateOf(false) }
     val curPercentage = animateFloatAsState(
         targetValue = if (animationPlayed) percentage else 0f,
