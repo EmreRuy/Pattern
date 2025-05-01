@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
@@ -60,10 +61,15 @@ fun PreviewOfHomeScreen() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen() {
-    val selectedDay = remember { mutableIntStateOf(0) }
     var explodeConfetti by remember { mutableStateOf(false) }
     var triggerConfetti by remember { mutableStateOf(false) }
+    val listState = rememberLazyListState()
+    val selectedDay = remember { mutableIntStateOf(180) }
     val dayList = remember { generateNext365Days() }
+
+    LaunchedEffect(Unit) {
+        listState.scrollToItem(selectedDay.intValue)
+    }
     LaunchedEffect(triggerConfetti) {
         if (triggerConfetti) {
             delay(300)
@@ -117,7 +123,8 @@ fun HomeScreen() {
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(horizontal = 8.dp),
-                            contentPadding = PaddingValues(end = 8.dp)
+                            contentPadding = PaddingValues(end = 8.dp),
+                            state = listState
                         ) {
                             items(365) { index ->
                                 Column(modifier = Modifier.padding(end = 8.dp)) {
