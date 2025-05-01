@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.pattern.ui.components.ExperienceLevelCard
 import com.example.pattern.ui.components.ProfileStatCard
 
 @Preview
@@ -29,6 +30,11 @@ fun ProfileScreen() {
             .background(MaterialTheme.colorScheme.background)
             .padding(vertical = 12.dp)
     ) {
+        ExperienceLevelCard(
+            title = "Experience Level",
+            percentage = 0.75f,
+            number = 100,
+        )
         ProfileStatCard(
             title = "Total Completed Habits",
             percentage = 1f,
