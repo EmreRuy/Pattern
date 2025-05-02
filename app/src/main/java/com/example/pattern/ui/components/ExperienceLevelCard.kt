@@ -23,11 +23,20 @@ fun ExperienceLevelCard(
     percentage: Float,
     number: Int
 ) {
+    val level = (percentage * number).toInt().coerceIn(10, 100)
+    val levelTitle = when (level) {
+        in 10..29 -> "Beginner"
+        in 30..49 -> "Learner"
+        in 50..69 -> "Consistent"
+        in 70..89 -> "Expert"
+        else -> "Habit Master"
+    }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 24.dp, vertical = 12.dp)
-            .height(150.dp),
+            .height(200.dp),
         shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant
@@ -46,10 +55,23 @@ fun ExperienceLevelCard(
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onSurface
             )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = levelTitle,
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary
+            )
             Spacer(modifier = Modifier.height(16.dp))
             LinearProgressBar(
                 percentage = percentage,
                 number = number
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "Step by step walk the thousand-mile road",
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurface
             )
         }
     }
