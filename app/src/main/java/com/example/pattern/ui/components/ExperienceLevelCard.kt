@@ -60,7 +60,7 @@ fun ExperienceLevelCard(
                 text = levelTitle,
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary
+                color = MaterialTheme.colorScheme.tertiary
             )
             Spacer(modifier = Modifier.height(16.dp))
             LinearProgressBar(
@@ -71,7 +71,7 @@ fun ExperienceLevelCard(
             Text(
                 text = "Step by step walk the thousand-mile road",
                 style = MaterialTheme.typography.labelMedium,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.primary
             )
         }
     }

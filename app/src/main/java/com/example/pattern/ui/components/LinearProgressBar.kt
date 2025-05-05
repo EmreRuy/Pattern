@@ -34,8 +34,8 @@ fun LinearProgressBar(
     fontSize: TextUnit = 20.sp,
     width: Dp = 240.dp,
     height: Dp = 12.dp,
-    color: androidx.compose.ui.graphics.Color = MaterialTheme.colorScheme.tertiary,
-    backgroundColor: androidx.compose.ui.graphics.Color = MaterialTheme.colorScheme.onSurface,
+    color: androidx.compose.ui.graphics.Color = MaterialTheme.colorScheme.primary,
+    backgroundColor: androidx.compose.ui.graphics.Color = MaterialTheme.colorScheme.onSurfaceVariant,
     animDuration: Int = 3000,
     animDelay: Int = 0
 ) {
@@ -48,13 +48,10 @@ fun LinearProgressBar(
         ),
         label = ""
     )
-
     LaunchedEffect(Unit) {
         animationPlayed = true
     }
-
     val level = (animatedProgress.value * number).toInt().coerceIn(10, 100)
-
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Box(
             modifier = Modifier
@@ -70,9 +67,7 @@ fun LinearProgressBar(
                     .background(color)
             )
         }
-
         Spacer(modifier = Modifier.height(8.dp))
-
         Text(
             text = "Level $level",
             fontSize = fontSize,
