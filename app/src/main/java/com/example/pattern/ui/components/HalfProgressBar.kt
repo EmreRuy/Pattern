@@ -1,17 +1,17 @@
 package com.example.pattern.ui.components
 
-import android.graphics.Color
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.Dp
@@ -35,34 +36,44 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 
-
 @Composable
-fun ExtraCard(){
+fun ProfileExtraCard(
+    title: String = "Extra Score",
+    percentage: Float,
+    number: Int,
+    modifier: Modifier = Modifier,
+    containerColor: Color = MaterialTheme.colorScheme.surfaceVariant
+) {
     Card(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 24.dp, vertical = 24.dp)
-            .height(240.dp),
+            .padding(horizontal = 24.dp, vertical = 12.dp)
+            .wrapContentHeight(),
         shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant
+            containerColor = containerColor
         )
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+                .padding(vertical = 24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.padding(top = 100.dp))
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Spacer(modifier = Modifier.height(12.dp))
             HalfCircularProgressBar(
-                percentage = 0.90f,
-                number = 100
+                percentage = percentage,
+                number = number
             )
         }
+    }
 }
-}
+
 @Composable
 fun HalfCircularProgressBar(
     percentage: Float,
@@ -70,8 +81,8 @@ fun HalfCircularProgressBar(
     fontSize: TextUnit = 32.sp,
     width: Dp = 180.dp,
     height: Dp = 120.dp,
-    color: androidx.compose.ui.graphics.Color = MaterialTheme.colorScheme.primary,
-    backgroundColor: androidx.compose.ui.graphics.Color = MaterialTheme.colorScheme.onSurfaceVariant,
+    color: Color = MaterialTheme.colorScheme.primary,
+    backgroundColor: Color = MaterialTheme.colorScheme.onSurfaceVariant,
     strokeWidth: Dp = 12.dp,
     animDuration: Int = 3000,
     animDelay: Int = 0,
@@ -90,23 +101,23 @@ fun HalfCircularProgressBar(
     Box(
         contentAlignment = Alignment.Center,
     ) {
-        Canvas(modifier = Modifier.size(width = width, height = height)) {
-            val arcSize = Size(size.width, size.height * 2) // Makes it visually a half-circle
-            val arcOffset = Offset(0f, -size.height)
-            // Draw background arc
+        Canvas(modifier = Modifier.size(width = width, height = height * 1.5f)) {
+            val arcOffset = Offset.Zero
+            val arcSize = Size(size.width, size.height)
+            // Draws background arc
             drawArc(
                 color = backgroundColor,
-                startAngle = -180f,
+                startAngle = 180f,
                 sweepAngle = 180f,
                 useCenter = false,
                 style = Stroke(strokeWidth.toPx(), cap = StrokeCap.Round),
                 size = arcSize,
                 topLeft = arcOffset
             )
-            // Draw animated foreground arc
+            // Draws animated foreground arc
             drawArc(
                 color = color,
-                startAngle = -180f,
+                startAngle = 180f,
                 sweepAngle = 180f * curPercentage.value,
                 useCenter = false,
                 style = Stroke(strokeWidth.toPx(), cap = StrokeCap.Round),
@@ -114,12 +125,17 @@ fun HalfCircularProgressBar(
                 topLeft = arcOffset
             )
         }
-        Text(
-            text = (curPercentage.value * number).toInt().toString(),
-            fontSize = fontSize,
-            color = MaterialTheme.colorScheme.onBackground,
-            fontFamily = MaterialTheme.typography.bodyMedium.fontFamily
-        )
+        Box(
+            modifier = Modifier
+                .offset(y = (-height / 6)) // puts the text inside of the half circle
+        ) {
+            Text(
+                text = (curPercentage.value * number).toInt().toString(),
+                fontSize = fontSize,
+                color = MaterialTheme.colorScheme.onBackground,
+                fontFamily = MaterialTheme.typography.bodyMedium.fontFamily
+            )
+        }
     }
 }
 

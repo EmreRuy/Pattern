@@ -34,7 +34,7 @@ fun HabitCards(
             .fillMaxWidth()
             .fillMaxHeight()
             .padding(paddingValues)
-            .padding(horizontal = 16.dp, vertical = 16.dp)
+            .padding(horizontal = 8.dp, vertical = 16.dp)
             .background(
                 color = MaterialTheme.colorScheme.surfaceVariant,
                 shape = RoundedCornerShape(24.dp)
