@@ -38,7 +38,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import java.nio.file.WatchEvent
 
 
 @Composable
@@ -113,8 +112,8 @@ fun HalfCircularProgressBar(
     percentage: Float,
     number: Int,
     fontSize: TextUnit = 32.sp,
-    width: Dp = 180.dp,
-    height: Dp = 120.dp,
+    width: Dp = 150.dp,
+    height: Dp = 100.dp,
     color: Color = MaterialTheme.colorScheme.primary,
     backgroundColor: Color = MaterialTheme.colorScheme.onSurfaceVariant,
     strokeWidth: Dp = 12.dp,
@@ -135,7 +134,7 @@ fun HalfCircularProgressBar(
     Box(
         contentAlignment = Alignment.Center,
     ) {
-        Canvas(modifier = Modifier.size(width = width, height = height * 1.5f)) {
+        Canvas(modifier = Modifier.size(width = width, height = height * 1.4f)) {
             val arcOffset = Offset.Zero
             val arcSize = Size(size.width, size.height)
             // Draws background arc
@@ -161,7 +160,7 @@ fun HalfCircularProgressBar(
         }
         Box(
             modifier = Modifier
-                .offset(y = (-height / 6)) // puts the text inside of the half circle
+                .offset(y = (-height / 7)) // puts the text inside of the half circle
         ) {
             Text(
                 text = (curPercentage.value * number).toInt().toString(),
