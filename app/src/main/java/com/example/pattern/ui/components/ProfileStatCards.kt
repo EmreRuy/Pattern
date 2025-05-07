@@ -22,7 +22,7 @@ fun ProfileStatCard(
     title: String,
     percentage: Float,
     number: Int,
-    label : String
+    label: String
 ) {
     Card(
         modifier = Modifier
