@@ -112,7 +112,7 @@ fun HalfCircularProgressBar(
     percentage: Float,
     number: Int,
     fontSize: TextUnit = 32.sp,
-    width: Dp = 150.dp,
+    width: Dp = 155.dp,
     height: Dp = 100.dp,
     color: Color = MaterialTheme.colorScheme.primary,
     backgroundColor: Color = MaterialTheme.colorScheme.onSurfaceVariant,
