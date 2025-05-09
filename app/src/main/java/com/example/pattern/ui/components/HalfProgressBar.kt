@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
@@ -78,9 +79,20 @@ fun ProfileExtraCard(
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                InfoSquare(label = "Done", color =MaterialTheme.colorScheme.primary)
-                InfoSquare(label = "Skipped", color = MaterialTheme.colorScheme.secondary)
-                InfoSquare(label = "Total XP", color = MaterialTheme.colorScheme.tertiary)
+                InfoSquare(
+                    label = "Done", color = MaterialTheme.colorScheme.primary,
+                    number = 176
+                )
+                InfoSquare(
+                    label = "Skipped",
+                    color = MaterialTheme.colorScheme.secondary,
+                    number = 75
+                )
+                InfoSquare(
+                    label = "Total XP",
+                    color = MaterialTheme.colorScheme.tertiary,
+                    number = 1286
+                )
             }
         }
         }
@@ -90,7 +102,8 @@ fun ProfileExtraCard(
 fun InfoSquare(
     label: String,
     color: Color,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    number: Int
 ) {
     Box(
         modifier = modifier
@@ -99,12 +112,22 @@ fun InfoSquare(
             .background(color),
         contentAlignment = Alignment.TopCenter
     ) {
-        Text(
-            modifier = Modifier.padding(top = 4.dp),
-            text = label,
-            style = MaterialTheme.typography.labelMedium,
-            color = MaterialTheme.colorScheme.surface
-        )
+        Column(
+            modifier = Modifier.padding(8.dp).fillMaxSize().fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ){
+            Text(
+                modifier = Modifier.padding(top = 4.dp),
+                text = label,
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.surface
+            )
+            Text(
+                text = number.toString(),
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.surface
+            )
+        }
     }
 }
 @Composable
