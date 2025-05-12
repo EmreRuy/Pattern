@@ -75,7 +75,7 @@ fun BottomNavigationBar() {
                 HomeScreen()
             }
             composable(Screens.Add.route) {
-                AddHabitScreen()
+                AddHabitScreen(onSave = { navController.popBackStack() })
             }
             composable(Screens.Profile.route) {
                 //Profile Screen

@@ -63,7 +63,7 @@ class MainActivity : ComponentActivity() {
                             HomeScreen()
                         }
                         composable(Screens.Add.route) {
-                            AddHabitScreen()
+                            AddHabitScreen(onSave = { navController.popBackStack() })
                         }
                         composable(Screens.Profile.route) {
                             ProfileScreen()
