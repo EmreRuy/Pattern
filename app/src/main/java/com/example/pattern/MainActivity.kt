@@ -5,8 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SheetValue
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
@@ -19,6 +24,9 @@ import com.example.pattern.ui.screens.AddHabitScreen
 import com.example.pattern.ui.screens.HomeScreen
 import com.example.pattern.ui.theme.AppTheme
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import com.example.pattern.ui.screens.ProfileScreen
 
 @Preview(showBackground = true)
@@ -28,6 +36,7 @@ fun GreetingPreview() {
 }
 
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -35,13 +44,35 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentRoute = navBackStackEntry?.destination?.route ?: Screens.Home.route
+                //for Bottom Sheet Control
+                val sheetState = rememberModalBottomSheetState(
+                    skipPartiallyExpanded = true,
+                    confirmValueChange = { it != SheetValue.PartiallyExpanded }
+                )
+                var showSheet by remember { mutableStateOf(false) }
+                LaunchedEffect(showSheet) {
+                    if (showSheet) {
+                        sheetState.expand()
+                    }
+                }
+                if (showSheet) {
+                    ModalBottomSheet(
+                        onDismissRequest = { showSheet = false },
+                        sheetState = sheetState,
+                    ) {
+                        AddHabitScreen(onSave = { showSheet = false })
+                    }
+                }
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     bottomBar = {
                         CustomBottomBar(
                             currentRoute = currentRoute,
                             onItemClick = { item ->
-                                if (currentRoute != item.route) {
+                                if (item.route == Screens.Add.route) {
+                                    // Show bottom sheet instead of navigating
+                                    showSheet = true
+                                } else if (currentRoute != item.route) {
                                     navController.navigate(item.route) {
                                         popUpTo(navController.graph.startDestinationId) {
                                             saveState = true
@@ -62,9 +93,6 @@ class MainActivity : ComponentActivity() {
                         composable(Screens.Home.route) {
                             HomeScreen()
                         }
-                        composable(Screens.Add.route) {
-                            AddHabitScreen(onSave = { navController.popBackStack() })
-                        }
                         composable(Screens.Profile.route) {
                             ProfileScreen()
                         }
@@ -74,3 +102,5 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+
