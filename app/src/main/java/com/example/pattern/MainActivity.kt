@@ -70,7 +70,7 @@ class MainActivity : ComponentActivity() {
                             currentRoute = currentRoute,
                             onItemClick = { item ->
                                 if (item.route == Screens.Add.route) {
-                                    // Show bottom sheet instead of navigating
+                                    // Shows bottom sheet instead of navigating
                                     showSheet = true
                                 } else if (currentRoute != item.route) {
                                     navController.navigate(item.route) {
