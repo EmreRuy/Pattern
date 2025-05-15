@@ -47,7 +47,13 @@ fun AddHabitScreen(onSave: () -> Unit) {
         ) {
             OutlinedTextField(
                 value = habitName,
-                onValueChange = { habitName = it },
+                onValueChange = {
+                    habitName = it.split(" ").joinToString(" ") { word ->
+                        word.replaceFirstChar { char ->
+                            if (char.isLowerCase()) char.titlecase() else char.toString()
+                        }
+                    }
+                },
                 label = { Text("Habit Name") },
                 shape = RoundedCornerShape(24.dp),
                 modifier = Modifier.fillMaxWidth()
