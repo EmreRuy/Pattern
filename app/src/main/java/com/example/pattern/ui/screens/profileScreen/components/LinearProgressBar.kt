@@ -1,4 +1,4 @@
-package com.example.pattern.ui.components
+package com.example.pattern.ui.screens.profileScreen.components
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -22,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
@@ -34,8 +35,8 @@ fun LinearProgressBar(
     fontSize: TextUnit = 20.sp,
     width: Dp = 240.dp,
     height: Dp = 12.dp,
-    color: androidx.compose.ui.graphics.Color = MaterialTheme.colorScheme.primary,
-    backgroundColor: androidx.compose.ui.graphics.Color = MaterialTheme.colorScheme.onSurfaceVariant,
+    color: Color = MaterialTheme.colorScheme.primary,
+    backgroundColor: Color = MaterialTheme.colorScheme.onSurfaceVariant,
     animDuration: Int = 3000,
     animDelay: Int = 0
 ) {

@@ -1,4 +1,4 @@
-package com.example.pattern.ui.components
+package com.example.pattern.ui.screens.homeScreen.components
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -21,7 +21,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.pattern.ui.navigation.BottomNavigationItem
 import com.example.pattern.ui.navigation.Screens
 import com.example.pattern.ui.screens.addHabitScreen.AddHabitScreen
-import com.example.pattern.ui.screens.HomeScreen
+import com.example.pattern.ui.screens.homeScreen.HomeScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

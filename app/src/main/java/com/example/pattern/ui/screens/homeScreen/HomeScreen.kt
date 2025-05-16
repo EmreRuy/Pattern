@@ -1,4 +1,4 @@
-package com.example.pattern.ui.screens
+package com.example.pattern.ui.screens.homeScreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -48,7 +48,7 @@ import androidx.compose.ui.unit.sp
 import com.example.pattern.R
 import com.example.pattern.ui.components.ConfettiView
 import com.example.pattern.data.model.Habit
-import com.example.pattern.ui.components.HabitCards
+import com.example.pattern.ui.screens.homeScreen.components.HabitCards
 import com.example.pattern.utils.generateNext365Days
 import kotlinx.coroutines.delay
 

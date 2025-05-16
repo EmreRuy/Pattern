@@ -1,4 +1,4 @@
-package com.example.pattern.ui.components
+package com.example.pattern.ui.screens.profileScreen.components
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween

@@ -1,4 +1,4 @@
-package com.example.pattern.ui.screens
+package com.example.pattern.ui.screens.profileScreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -11,9 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.pattern.ui.components.ExperienceLevelCard
-import com.example.pattern.ui.components.ProfileExtraCard
-import com.example.pattern.ui.components.ProfileStatCard
+import com.example.pattern.ui.screens.profileScreen.components.ExperienceLevelCard
+import com.example.pattern.ui.screens.profileScreen.components.ProfileExtraCard
+import com.example.pattern.ui.screens.profileScreen.components.ProfileStatCard
 
 @Preview
 @Composable

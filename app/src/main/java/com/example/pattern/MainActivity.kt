@@ -18,16 +18,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.pattern.ui.components.CustomBottomBar
+import com.example.pattern.ui.screens.homeScreen.components.CustomBottomBar
 import com.example.pattern.ui.navigation.Screens
 import com.example.pattern.ui.screens.addHabitScreen.AddHabitScreen
-import com.example.pattern.ui.screens.HomeScreen
+import com.example.pattern.ui.screens.homeScreen.HomeScreen
 import com.example.pattern.ui.theme.AppTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import com.example.pattern.ui.screens.ProfileScreen
+import com.example.pattern.ui.screens.profileScreen.ProfileScreen
 
 @Preview(showBackground = true)
 @Composable
