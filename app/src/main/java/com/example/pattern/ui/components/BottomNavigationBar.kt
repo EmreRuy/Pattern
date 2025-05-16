@@ -20,7 +20,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.pattern.ui.navigation.BottomNavigationItem
 import com.example.pattern.ui.navigation.Screens
-import com.example.pattern.ui.screens.AddHabitScreen
+import com.example.pattern.ui.screens.addHabitScreen.AddHabitScreen
 import com.example.pattern.ui.screens.HomeScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -76,9 +76,6 @@ fun BottomNavigationBar() {
             }
             composable(Screens.Add.route) {
                 AddHabitScreen(onSave = { navController.popBackStack() })
-            }
-            composable(Screens.Profile.route) {
-                //Profile Screen
             }
         }
     }

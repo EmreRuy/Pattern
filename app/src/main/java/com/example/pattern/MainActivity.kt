@@ -20,7 +20,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.pattern.ui.components.CustomBottomBar
 import com.example.pattern.ui.navigation.Screens
-import com.example.pattern.ui.screens.AddHabitScreen
+import com.example.pattern.ui.screens.addHabitScreen.AddHabitScreen
 import com.example.pattern.ui.screens.HomeScreen
 import com.example.pattern.ui.theme.AppTheme
 import androidx.compose.runtime.getValue
