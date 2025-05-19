@@ -1,5 +1,7 @@
 package com.example.pattern.ui.screens.addHabitScreen.components
 
+import android.R
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
