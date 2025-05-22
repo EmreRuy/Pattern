@@ -34,9 +34,10 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 @Preview(showBackground = true)
-fun PreviewOfHabitName(){
+fun PreviewOfHabitName() {
     HabitDetailsCard(habitName = "Drink Water") { }
 }
+
 @Composable
 fun HabitDetailsCard(habitName: String, onNameChange: (String) -> Unit) {
     Card(
@@ -72,7 +73,11 @@ fun HabitDetailsCard(habitName: String, onNameChange: (String) -> Unit) {
                     .heightIn(64.dp)
                     .fillMaxWidth(),
                 shape = RoundedCornerShape(18.dp),
-                textStyle = MaterialTheme.typography.titleMedium.copy(fontSize = 20.sp, lineHeight = 28.sp,  fontWeight = FontWeight.Bold),
+                textStyle = MaterialTheme.typography.titleMedium.copy(
+                    fontSize = 20.sp,
+                    lineHeight = 28.sp,
+                    fontWeight = FontWeight.Bold
+                ),
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = MaterialTheme.colorScheme.surfaceBright,
                     unfocusedContainerColor = MaterialTheme.colorScheme.surfaceBright,
@@ -82,7 +87,10 @@ fun HabitDetailsCard(habitName: String, onNameChange: (String) -> Unit) {
                     cursorColor = MaterialTheme.colorScheme.primary
                 ),
                 singleLine = true,
-                keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Words, imeAction = ImeAction.Done)
+                keyboardOptions = KeyboardOptions(
+                    capitalization = KeyboardCapitalization.Words,
+                    imeAction = ImeAction.Done
+                )
             )
         }
     }
