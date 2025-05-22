@@ -1,5 +1,7 @@
 package com.example.pattern.ui.screens.addHabitScreen
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -8,6 +10,7 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import com.example.pattern.ui.screens.addHabitScreen.components.EmojiSelector
 import com.example.pattern.ui.screens.addHabitScreen.components.FrequencySelector
@@ -27,6 +30,9 @@ fun AddHabitScreen(onSave: () -> Unit) {
     var reminderTime by remember { mutableStateOf(LocalTime.now()) }
     var emoji by remember { mutableStateOf("🔥") }
     var motivationNote by remember { mutableStateOf("") }
+
+    val focusManager = LocalFocusManager.current
+
     Scaffold(
         floatingActionButton = {
             ExtendedFloatingActionButton(
@@ -36,23 +42,36 @@ fun AddHabitScreen(onSave: () -> Unit) {
             )
         }
     ) { padding ->
-        Column(
+        // I wrapped the whole column inside of a box so that after user done with typing and click somewhere else it clears focus
+        Box(
             modifier = Modifier
-                .padding(16.dp)
-                .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(24.dp)
+                .fillMaxSize()
+                .clickable(
+                    indication = null,
+                    interactionSource = remember { MutableInteractionSource() }
+                ) {
+                    focusManager.clearFocus(force = true) // this  is forcing clear focus and hide keyboard
+                }
         ) {
-            HabitDetailsCard(habitName) { habitName = it }
-            HabitTypeSelector(habitType) { habitType = it }
-            FrequencySelector(frequency) { frequency = it }
-            ReminderCard(
-                reminderEnabled, reminderTime,
-                onToggle = { reminderEnabled = it }
-            )
-            EmojiSelector(emoji) { emoji = it }
-            MotivationInput(motivationNote) { motivationNote = it }
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(24.dp)
+            ) {
+                HabitDetailsCard(habitName) { habitName = it }
+                HabitTypeSelector(habitType) { habitType = it }
+                FrequencySelector(frequency) { frequency = it }
+                ReminderCard(
+                    reminderEnabled, reminderTime,
+                    onToggle = { reminderEnabled = it }
+                )
+                EmojiSelector(emoji) { emoji = it }
+                MotivationInput(motivationNote) { motivationNote = it }
+            }
         }
     }
 }
+
 
 
