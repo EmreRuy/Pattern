@@ -48,7 +48,7 @@ fun HabitDetailsCard(habitName: String, onNameChange: (String) -> Unit) {
         )
     ) {
         Column(
-            modifier = Modifier.padding(24.dp),
+            modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {

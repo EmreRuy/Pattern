@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.example.pattern.ui.screens.addHabitScreen.components.EmojiSelector
 import com.example.pattern.ui.screens.addHabitScreen.components.FrequencySelector
 import com.example.pattern.ui.screens.addHabitScreen.components.HabitDetailsCard
-import com.example.pattern.ui.screens.addHabitScreen.components.HabitTypeSelector
+import com.example.pattern.ui.screens.addHabitScreen.components.HabitTypeSelectorModern
 import com.example.pattern.ui.screens.addHabitScreen.components.MotivationInput
 import com.example.pattern.ui.screens.addHabitScreen.components.ReminderCard
 import java.time.LocalTime
@@ -60,7 +60,8 @@ fun AddHabitScreen(onSave: () -> Unit) {
                 verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {
                 HabitDetailsCard(habitName) { habitName = it }
-                HabitTypeSelector(habitType) { habitType = it }
+              //  HabitTypeSelector(habitType) { habitType = it }
+                HabitTypeSelectorModern(selectedType = String()) { }
                 FrequencySelector(frequency) { frequency = it }
                 ReminderCard(
                     reminderEnabled, reminderTime,
