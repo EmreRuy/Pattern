@@ -6,19 +6,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AddCircle
-import androidx.compose.material.icons.filled.Face
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.FilterChip
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -59,22 +49,19 @@ fun HabitTypeSelectorModern(
         ) {
             habitTypes.forEach { (type, emoji) ->
                 val isSelected = selectedType == type
-                val backgroundColor = if (isSelected)
-                    MaterialTheme.colorScheme.primaryContainer
-                else
-                    MaterialTheme.colorScheme.surface
-
-                val contentColor = if (isSelected)
-                    MaterialTheme.colorScheme.onPrimaryContainer
-                else
-                    MaterialTheme.colorScheme.onSurfaceVariant
 
                 Surface(
                     onClick = { onTypeChange(type) },
                     shape = RoundedCornerShape(50),
-                    color = backgroundColor,
+                    color = if (isSelected)
+                        MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
+                    else
+                        MaterialTheme.colorScheme.surface,
                     tonalElevation = if (isSelected) 4.dp else 0.dp,
-                    border = if (!isSelected) BorderStroke(1.dp, MaterialTheme.colorScheme.outline) else null
+                    border = if (!isSelected) BorderStroke(
+                        1.dp,
+                        MaterialTheme.colorScheme.outline
+                    ) else null
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -87,39 +74,43 @@ fun HabitTypeSelectorModern(
                         )
                         Text(
                             text = type,
-                            color = contentColor,
+                            color = if (isSelected)
+                                MaterialTheme.colorScheme.primary
+                            else
+                                MaterialTheme.colorScheme.onSurfaceVariant,
                             style = MaterialTheme.typography.bodyMedium
                         )
                     }
                 }
             }
         }
+
         when (selectedType) {
             "Build" -> {
                 Text(
                     text = "You're trying to build a habit 💪",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
-                // You can add more input fields here (e.g., goal description, slider)
             }
+
             "Quit" -> {
                 Text(
                     text = "You're trying to quit something 🚫",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
-                // Maybe: TextField for trigger, reason, or journal
             }
+
             "Task" -> {
                 Text(
                     text = "You're managing a recurring task 🔁",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
-                // Example: estimated time field or checklist
             }
         }
     }
 }
+
 

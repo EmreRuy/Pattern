@@ -37,7 +37,7 @@ fun ProfileScreen() {
            number = 100
        )
         ProfileStatCard(
-            title = "Total Completed Habits",
+            title = "Total Completed Tasks",
             percentage = 1f,
             number = 200,
             label = "Total Habits"
