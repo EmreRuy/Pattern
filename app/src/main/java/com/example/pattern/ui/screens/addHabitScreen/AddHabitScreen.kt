@@ -61,7 +61,7 @@ fun AddHabitScreen(onSave: () -> Unit) {
             ) {
                 HabitDetailsCard(habitName) { habitName = it }
               //  HabitTypeSelector(habitType) { habitType = it }
-                HabitTypeSelectorModern(selectedType = String()) { }
+                HabitTypeSelectorModern(selectedType = habitType) { habitType = it }
                 FrequencySelector(frequency) { frequency = it }
                 ReminderCard(
                     reminderEnabled, reminderTime,

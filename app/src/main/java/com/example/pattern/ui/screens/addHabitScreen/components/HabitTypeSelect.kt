@@ -36,7 +36,7 @@ fun HabitTypeSelectorModern(
     val habitTypes = listOf(
         "Build" to "🚀",
         "Quit" to "🛑",
-        "Reinforce" to "🔁"
+        "Task" to "🔁"
     )
 
     Column(
@@ -94,5 +94,32 @@ fun HabitTypeSelectorModern(
                 }
             }
         }
+        when (selectedType) {
+            "Build" -> {
+                Text(
+                    text = "You're trying to build a habit 💪",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                // You can add more input fields here (e.g., goal description, slider)
+            }
+            "Quit" -> {
+                Text(
+                    text = "You're trying to quit something 🚫",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                // Maybe: TextField for trigger, reason, or journal
+            }
+            "Task" -> {
+                Text(
+                    text = "You're managing a recurring task 🔁",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                // Example: estimated time field or checklist
+            }
+        }
     }
 }
+

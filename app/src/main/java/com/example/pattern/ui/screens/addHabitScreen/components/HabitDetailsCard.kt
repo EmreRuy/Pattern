@@ -79,8 +79,8 @@ fun HabitDetailsCard(habitName: String, onNameChange: (String) -> Unit) {
                     fontWeight = FontWeight.Bold
                 ),
                 colors = TextFieldDefaults.colors(
-                    focusedContainerColor = MaterialTheme.colorScheme.surfaceBright,
-                    unfocusedContainerColor = MaterialTheme.colorScheme.surfaceBright,
+                    focusedContainerColor = MaterialTheme.colorScheme.surface,
+                    unfocusedContainerColor = MaterialTheme.colorScheme.surface,
                     disabledContainerColor = Color.White,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
