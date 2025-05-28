@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
@@ -33,15 +34,7 @@ fun AddHabitScreen(onSave: () -> Unit) {
 
     val focusManager = LocalFocusManager.current
 
-    Scaffold(
-        floatingActionButton = {
-            ExtendedFloatingActionButton(
-                onClick = onSave,
-                icon = { Icon(Icons.Default.Check, contentDescription = "Save") },
-                text = { Text("Save Habit") }
-            )
-        }
-    ) { padding ->
+    Scaffold { padding ->
         // I wrapped the whole column inside of a box so that after user done with typing and click somewhere else it clears focus
         Box(
             modifier = Modifier
@@ -60,15 +53,24 @@ fun AddHabitScreen(onSave: () -> Unit) {
                 verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {
                 HabitDetailsCard(habitName) { habitName = it }
-              //  HabitTypeSelector(habitType) { habitType = it }
                 HabitTypeSelectorModern(selectedType = habitType) { habitType = it }
                 FrequencySelector(frequency) { frequency = it }
-                ReminderCard(
-                    reminderEnabled, reminderTime,
-                    onToggle = { reminderEnabled = it }
-                )
+                ReminderCard(reminderEnabled, reminderTime, onToggle = { reminderEnabled = it })
                 EmojiSelector(emoji) { emoji = it }
                 MotivationInput(motivationNote) { motivationNote = it }
+                Box(modifier = Modifier.padding(vertical = 16.dp)) {
+                    Button(
+                        onClick = onSave,
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(16.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.primary,
+                            contentColor = MaterialTheme.colorScheme.onPrimary
+                        )
+                    ) {
+                        Text("Save", style = MaterialTheme.typography.titleMedium)
+                    }
+                }
             }
         }
     }
