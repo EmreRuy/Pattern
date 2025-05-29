@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -17,8 +15,8 @@ import com.example.pattern.ui.screens.addHabitScreen.components.EmojiSelector
 import com.example.pattern.ui.screens.addHabitScreen.components.FrequencySelector
 import com.example.pattern.ui.screens.addHabitScreen.components.HabitDetailsCard
 import com.example.pattern.ui.screens.addHabitScreen.components.HabitTypeSelectorModern
-import com.example.pattern.ui.screens.addHabitScreen.components.MotivationInput
 import com.example.pattern.ui.screens.addHabitScreen.components.ReminderCard
+import java.time.DayOfWeek
 import java.time.LocalTime
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -32,6 +30,8 @@ fun AddHabitScreen(onSave: () -> Unit) {
     var emoji by remember { mutableStateOf("🔥") }
     var motivationNote by remember { mutableStateOf("") }
 
+    var buildHabitTime by remember { mutableStateOf(LocalTime.now()) }
+    var buildHabitDays by remember { mutableStateOf(listOf<DayOfWeek>()) }
     val focusManager = LocalFocusManager.current
 
     Scaffold { padding ->
@@ -53,12 +53,19 @@ fun AddHabitScreen(onSave: () -> Unit) {
                 verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {
                 HabitDetailsCard(habitName) { habitName = it }
-                HabitTypeSelectorModern(selectedType = habitType) { habitType = it }
+                HabitTypeSelectorModern(
+                    selectedType = habitType,
+                    onTypeChange = { habitType = it },
+                    selectedTime = buildHabitTime,
+                    onTimeChange = { buildHabitTime = it },
+                    selectedDays = buildHabitDays,
+                    onDaysChange = { buildHabitDays = it }
+                )
                 FrequencySelector(frequency) { frequency = it }
                 ReminderCard(reminderEnabled, reminderTime, onToggle = { reminderEnabled = it })
                 EmojiSelector(emoji) { emoji = it }
-                MotivationInput(motivationNote) { motivationNote = it }
-                Box(modifier = Modifier.padding(vertical = 16.dp)) {
+               // MotivationInput(motivationNote) { motivationNote = it }
+                Box(modifier = Modifier.padding(bottom =  16.dp)) {
                     Button(
                         onClick = onSave,
                         modifier = Modifier.fillMaxWidth(),

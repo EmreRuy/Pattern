@@ -17,11 +17,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import java.time.DayOfWeek
+import java.time.LocalTime
 
 @Composable
 fun HabitTypeSelectorModern(
     selectedType: String,
-    onTypeChange: (String) -> Unit
+    onTypeChange: (String) -> Unit,
+    selectedTime: LocalTime,
+    onTimeChange: (LocalTime) -> Unit,
+    selectedDays: List<DayOfWeek>,
+    onDaysChange: (List<DayOfWeek>) -> Unit
 ) {
     val habitTypes = listOf(
         "Build" to "🚀",
@@ -87,10 +93,11 @@ fun HabitTypeSelectorModern(
 
         when (selectedType) {
             "Build" -> {
-                Text(
-                    text = "You're trying to build a habit 💪",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                BuildTypeOfHabit(
+                    selectedTime = selectedTime,
+                    onTimeChange = onTimeChange,
+                    selectedDays = selectedDays,
+                    onDaysChange = onDaysChange
                 )
             }
 
