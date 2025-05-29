@@ -5,8 +5,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
@@ -22,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import java.time.DayOfWeek
 import java.time.LocalTime
@@ -54,9 +59,9 @@ fun BuildTypeOfHabit(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(16.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant)
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(24.dp)
+            .padding(8.dp)
+            .background(MaterialTheme.colorScheme.surfaceVariant),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Text(
             text = "Customize Your Habit",
@@ -95,8 +100,8 @@ fun BuildTypeOfHabit(
 
             val daysOfWeek = DayOfWeek.entries.toTypedArray()
             FlowRow(
-                horizontalArrangement = Arrangement.spacedBy(2.dp),
-                verticalArrangement = Arrangement.spacedBy(2.dp)
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 daysOfWeek.forEach { day ->
                     val isSelected = selectedDays.contains(day)
@@ -111,9 +116,16 @@ fun BuildTypeOfHabit(
                             onDaysChange(updated)
                         },
                         label = {
-                            Text(day.name.take(1).replaceFirstChar { it.uppercaseChar() })
+                            Text(
+                                text = day.name.take(1).replaceFirstChar { it.uppercaseChar() },
+                                textAlign = TextAlign.Center,
+                                style = MaterialTheme.typography.bodySmall,
+                                modifier = Modifier.fillMaxWidth()
+                            )
                         },
-                        shape = RoundedCornerShape(50),
+                        shape = CircleShape,
+                        modifier = Modifier
+                            .size(48.dp), // Make it perfectly circular
                         colors = FilterChipDefaults.filterChipColors(
                             selectedContainerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.15f),
                             selectedLabelColor = MaterialTheme.colorScheme.primary,
