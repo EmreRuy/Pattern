@@ -28,9 +28,6 @@ fun AddHabitScreen(onSave: () -> Unit) {
     var reminderEnabled by remember { mutableStateOf(false) }
     var reminderTime by remember { mutableStateOf(LocalTime.now()) }
     var emoji by remember { mutableStateOf("🔥") }
-    var motivationNote by remember { mutableStateOf("") }
-
-    var buildHabitTime by remember { mutableStateOf(LocalTime.now()) }
     var buildHabitDays by remember { mutableStateOf(listOf<DayOfWeek>()) }
     val focusManager = LocalFocusManager.current
 
@@ -56,15 +53,12 @@ fun AddHabitScreen(onSave: () -> Unit) {
                 HabitTypeSelectorModern(
                     selectedType = habitType,
                     onTypeChange = { habitType = it },
-                    selectedTime = buildHabitTime,
-                    onTimeChange = { buildHabitTime = it },
                     selectedDays = buildHabitDays,
                     onDaysChange = { buildHabitDays = it }
                 )
                 FrequencySelector(frequency) { frequency = it }
                 ReminderCard(reminderEnabled, reminderTime, onToggle = { reminderEnabled = it })
                 EmojiSelector(emoji) { emoji = it }
-               // MotivationInput(motivationNote) { motivationNote = it }
                 Box(modifier = Modifier.padding(bottom =  16.dp)) {
                     Button(
                         onClick = onSave,

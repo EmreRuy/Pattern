@@ -31,8 +31,13 @@ fun ProfileScreen() {
             .background(MaterialTheme.colorScheme.background)
             .padding(vertical = 12.dp)
     ) {
+        ExperienceLevelCard(
+            title = "Your Progress Score",
+            percentage = 0.75f,
+            number = 100,
+        )
        ProfileExtraCard(
-           title = "Extra Score",
+           title = "Your Streak",
            percentage = 0.60f,
            number = 100
        )
@@ -47,11 +52,6 @@ fun ProfileScreen() {
             percentage = 0.9f,
             number = 100,
             label = "Success Score"
-        )
-        ExperienceLevelCard(
-            title = "Your Progress Score",
-            percentage = 0.75f,
-            number = 100,
         )
     }
 }

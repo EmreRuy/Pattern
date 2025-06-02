@@ -65,7 +65,7 @@ fun HabitTimeCard(
                 contentDescription = null,
                 tint = if (habit.isTimeChecked.value) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
                 modifier = Modifier
-                    .size(28.dp)
+                    .size(36.dp)
                     .clickable {
                         habit.isTimeChecked.value = !habit.isTimeChecked.value
                         if (habit.isTimeChecked.value) {

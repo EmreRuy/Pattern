@@ -42,7 +42,7 @@ fun PreviewOfHabitName() {
 fun HabitDetailsCard(habitName: String, onNameChange: (String) -> Unit) {
     Card(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(18.dp),
+        shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant
         )
@@ -59,7 +59,7 @@ fun HabitDetailsCard(habitName: String, onNameChange: (String) -> Unit) {
                     modifier = Modifier.size(28.dp)
                 )
                 Spacer(modifier = Modifier.width(16.dp))
-                Text("Your Habit", style = MaterialTheme.typography.headlineSmall)
+                Text("Your Habit", style = MaterialTheme.typography.titleLarge)
             }
             TextField(
                 value = habitName,
