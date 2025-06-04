@@ -60,7 +60,6 @@ fun WheelPicker(
             )
         }
     }
-
     LaunchedEffect(currentItemIndex) {
         onSelectedIndexChange(currentItemIndex)
     }
