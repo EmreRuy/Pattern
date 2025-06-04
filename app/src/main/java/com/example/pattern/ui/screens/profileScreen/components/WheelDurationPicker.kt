@@ -1,10 +1,14 @@
 package com.example.pattern.ui.screens.profileScreen.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,28 +22,54 @@ fun WheelDurationPicker(
     durationMinutes: Int,
     onDurationChange: (Int, Int) -> Unit
 ) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxWidth()
     ) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            WheelPicker(
-                items = (0..23).map { it.toString().padStart(2, '0') },
-                selectedIndex = durationHours,
-                onSelectedIndexChange = { onDurationChange(it, durationMinutes) }
+        // Displays selected duration
+        Row(
+            modifier = Modifier
+                .padding(vertical = 8.dp)
+                .background(
+                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f),
+                    shape = RoundedCornerShape(12.dp)
+                )
+                .padding(horizontal = 16.dp, vertical = 8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "${durationHours.toString().padStart(2, '0')}h " +
+                        "${durationMinutes.toString().padStart(2, '0')}m",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onBackground
             )
-            Text("Hours", style = MaterialTheme.typography.labelSmall)
         }
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            WheelPicker(
-                items = (0..59 step 5).map { it.toString().padStart(2, '0') },
-                selectedIndex = durationMinutes / 5,
-                onSelectedIndexChange = { onDurationChange(durationHours, it * 5) }
-            )
-            Text("Minutes", style = MaterialTheme.typography.labelSmall)
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                WheelPicker(
+                    items = (0..23).map { it.toString().padStart(2, '0') },
+                    selectedIndex = durationHours,
+                    onSelectedIndexChange = { onDurationChange(it, durationMinutes) }
+                )
+                Text("Hours", style = MaterialTheme.typography.labelSmall)
+            }
+            Spacer(modifier = Modifier.width(24.dp))
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                WheelPicker(
+                    items = (0..59 step 5).map { it.toString().padStart(2, '0') },
+                    selectedIndex = durationMinutes / 5,
+                    onSelectedIndexChange = { onDurationChange(durationHours, it * 5) }
+                )
+                Text("Minutes", style = MaterialTheme.typography.labelSmall)
+            }
         }
     }
 }
+
